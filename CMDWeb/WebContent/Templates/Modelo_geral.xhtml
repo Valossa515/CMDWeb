@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets" >
+
+<ui:insert name="metadata"/>
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>S.W.I.C.M.D</title>
+</h:head>
+<h:body>
+	<p:growl id = "msgGlobal"/>
+	<p:layout fullPage="true">
+			<p:layoutUnit position="north" header="S.W.I.C.M.D - Sistema Web Integrado de Cáculo de Montagem de Drywall " size="100" resizable="true" closable="true" collapsible="false">
+    </p:layoutUnit>
+ 
+    <p:layoutUnit position="south" header="Desenvolvido por Felipe Martins" size="100" resizable="true" closable="true" collapsible="false">
+        
+    </p:layoutUnit>
+ 
+    <p:layoutUnit position="west" size="200" header="Menu Principal" resizable="true" closable="true" collapsible="false">
+    <h:form>
+            <p:panelMenu>
+         			<p:submenu label="Arquivos">
+         				<p:menuitem value = "Principal" outcome="/pages/principal.xhtml'"/>
+         				<p:menuitem value = "Sair"/>
+         				<p:menuitem value = "Relatorios"/>
+         			</p:submenu>
+         			<p:submenu label="Cadastros">
+         				<p:menuitem value = "Funcionarios" outcome="/pages/funcionarioPesquisa.xhtml"/>
+         				<p:menuitem value = "Pessoa Física" outcome="/pages/PessoaFisicaPesquisa.xhtml"/>
+         				<p:menuitem value = "Pessoa Jurídica" outcome="/pages/PessoaJuridicaPesquisa.xhtml"/>
+         				<p:menuitem value = "Fabricantes" outcome="/pages/FabricantePesquisa.xhtml"/>
+         				<p:menuitem value = "Materiais"/>
+         				<p:menuitem value = "Construção"/>
+         			</p:submenu>
+         			<p:submenu label="Vendas">
+         				<p:menuitem value = "Solicitação de Orçamentos"/>
+         				<p:menuitem value = "Orçamentos"/>
+         			</p:submenu>
+         </p:panelMenu>
+    </h:form>   
+    </p:layoutUnit>
+ 
+    <p:layoutUnit position="east" size="200" resizable="true" closable="true" collapsible="false" effect="drop">
+   			<p:outputLabel for = "button" value ="Calendario">
+   			<p:calendar id="button" showOn="button" />
+   					
+   			</p:outputLabel>
+    </p:layoutUnit>
+    <p:layoutUnit position="center">
+     <ui:insert name = "conteudo"/>
+    </p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>

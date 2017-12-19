@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<ui:composition template="/Templates/Modelo_geral.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+				<f:event listener="#{pessoafisicaBean.carregarPesquisa}" type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:outputText value = "Pesquisa"/>
+		<h:form>
+			<p:toolbar>
+					<f:facet name="left">
+						<h:outputText value="Clientes Pessoa Física"/>
+					</f:facet>
+			</p:toolbar>			
+			 <p:dataTable emptyMessage="Nenhum Registro Encontrado!!!"
+			 value="#{pessoafisicaBean.lista_pfisica}" filteredValue="#{pessoafisicaBean.lista_pfisica_filtrados}"
+			 var="fcursor"
+			 rows="10" paginator="true">
+			 <f:facet name="footer">
+			    <p:button value="Novo" outcome="/pages/PessoaFisicaCadastro.xhtml?faces-redirect=true">
+			    	<f:param name="fabacao" value="Novo"/>
+			    </p:button>
+			 </f:facet>
+			 		<p:column headerText="CPF" style = "width: 16%;">
+			 		  <h:outputText value="#{fcursor.cpf}"/>
+			 		</p:column>
+			 		<p:column  headerText="Nome" filterBy="#{fcursor.nome}" sortBy="#{fcursor.nome}" style = "width: 18%;">
+			 		<h:outputText value="#{fcursor.nome}"/>
+			 		</p:column>
+			 		<p:column headerText="Data de Nascimento" style = "width: 16%;">
+			 		  <h:outputText value="#{fcursor.datanascimento}"/>
+			 		</p:column>
+			 		<p:column headerText="Logradouro" style = "width: 15%;">
+			 		  <h:outputText value="#{fcursor.logradouro}"/>
+			 		</p:column>
+			 		<p:column headerText="Numero" style = "width: 12%;">
+			 		  <h:outputText value="#{fcursor.numero}"/>
+			 		</p:column>
+			 		<p:column headerText="CEP" style = "width: 15%;">
+			 		  <h:outputText value="#{fcursor.cep}"/>
+			 		</p:column>
+			 		<p:column headerText="UF" style = "width: 5%;">
+			 		  <h:outputText value="#{fcursor.uf}"/>
+			 		</p:column>
+			 		<p:column headerText="Bairro" style = "width: 15%;">
+			 		  <h:outputText value="#{fcursor.bairro}"/>
+			 		</p:column>
+			 		<p:column headerText="Opções" style = "width: 12%;">
+			 			<p:button value="Excluir" outcome="/pages/PessoaFisicaCadastro.xhtml">
+			 				<f:param name="fabacao" value="Excluir"/>
+			 				<f:param name="fabcod" value="#{fcursor.cpf}"/>
+			 			</p:button>
+			 			<p:button value="Editar" outcome="/pages/PessoaFisicaCadastro.xhtml">
+			 				<f:param name="fabacao" value="Editar"/>
+			 				<f:param name="fabcod" value="#{fcursor.cpf}"/>
+			 			</p:button>
+			 		</p:column>
+			 </p:dataTable>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>
+</html>

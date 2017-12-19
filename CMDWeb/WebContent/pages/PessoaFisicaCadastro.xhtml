@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+  	<ui:composition template="/Templates/Modelo_geral.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="fabcod" value="#{pessoafisicaBean.cpf}"></f:viewParam>
+			<f:viewParam name="fabacao" value="#{pessoafisicaBean.acao}"></f:viewParam>
+			<f:event listener="#{pessoafisicaBean.carregarCadastro}" type="preRenderView"/>
+		</f:metadata>
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:outputText value="Cadastro" />
+		<h:form id="form_pfisica_cad">
+				<p:toolbar>
+					<f:facet name="left">
+						<h:outputText value="Cliente Pessoa Física"/>
+					</f:facet>
+			</p:toolbar>
+			<h:panelGrid columns="4" id="pn_func">
+					<p:outputLabel value = "CPF"/>
+					<p:inputMask mask="999.999.999-99" size="20" 
+					   value = "#{pessoafisicaBean.pfisica.cpf}"
+					   readonly="#{pessoafisicaBean.acao == 'Excluir'}">
+						<f:validateBean/>
+					</p:inputMask>
+					<p:outputLabel value = "Nome"/>
+					<p:inputText maxlength="20" size="10" value = "#{pessoafisicaBean.pfisica.nome}"
+					readonly="#{pessoafisicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Data de Nascimento" />
+					<p:inputMask mask = "99/99/9999" maxlength="20" size="10" value ="#{pessoafisicaBean.pfisica.datanascimento}"
+					readonly="#{pessoafisicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputMask>
+					<p:outputLabel value = "Logradouro"/>
+					<p:inputText maxlength="100" size="10" value = "#{pessoafisicaBean.pfisica.logradouro}"
+					readonly="#{pessoafisicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Numero"/>
+					<p:inputText maxlength="3" size="10" value = "#{pessoafisicaBean.pfisica.numero}"
+					readonly="#{pessoafisicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "CEP"/>
+					<p:inputMask mask = "99999-999" maxlength="8" size="10" value = "#{pessoafisicaBean.pfisica.cep}"
+					readonly="#{pessoafisicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputMask>
+					<p:outputLabel value = "UF"/>
+					<p:inputText maxlength="2" size="10" value = "#{pessoafisicaBean.pfisica.uf}"
+					readonly="#{pessoafisicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Complemento"/>
+					<p:inputText size="10" value = "#{pessoafisicaBean.pfisica.complemto}"
+					readonly="#{pessoafisicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Bairro"/>
+					<p:inputText maxlength="100" size="10" value = "#{pessoafisicaBean.pfisica.bairro}"
+					readonly="#{pessoafisicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>	
+			</h:panelGrid>			
+			<h:panelGrid columns="7">
+					<p:commandButton value = "Limpar" actionListener="#{pessoafisicaBean.novo}"
+					update=":form_pfisica_cad:pn_func"
+					rendered="#{pessoafisicaBean.acao == 'Novo'}"/>
+					<p:commandButton value = "Salvar" actionListener = "#{pessoafisicaBean.SalvarBean}" 
+					update=":msgGlobal :form_pfisica_cad:pn_func"
+					rendered="#{pessoafisicaBean.acao == 'Novo'}"/>
+					<p:button value = "Voltar" outcome = "/pages/PessoaFisicaPesquisa.xhtml"/>
+					<p:commandButton value = "Excluir" 
+					actionListener="#{pessoafisicaBean.ExcluirBean}"
+					update=":msgGlobal"
+					rendered="#{pessoafisicaBean.acao == 'Excluir'}"/>
+					<p:commandButton value = "Editar" actionListener="#{pessoafisicaBean.EditarBean}"
+					update=":msgGlobal"
+					rendered="#{pessoafisicaBean.acao == 'Editar'}"/>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	
+	<ui:composition template="/Templates/Modelo_geral.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="fabcod" value="#{pessoajuridicaBean.cnpj}"></f:viewParam>
+			<f:viewParam name="fabacao" value="#{pessoajuridicaBean.acao}"></f:viewParam>
+			<f:event listener="#{pessoajuridicaBean.carregarCadastro}" type="preRenderView"/>
+		</f:metadata>
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:outputText value="Cadastro" />
+		<h:form id="form_pjuridica_cad">
+				<p:toolbar>
+					<f:facet name="left">
+						<h:outputText value="Cliente Pessoa Jurídica"/>
+					</f:facet>
+			</p:toolbar>
+			<h:panelGrid columns="4" id="pn_func">
+					<p:outputLabel value = "CNPJ"/>
+					<p:inputMask mask="99.999.999/9999-99" size="20" 
+					   value = "#{pessoajuridicaBean.pjuridica.cnpj}"
+					   readonly="#{pessoajuridicaBean.acao == 'Excluir'}">
+						<f:validateBean/>
+					</p:inputMask>
+					<p:outputLabel value = "Nome Fantasia"/>
+					<p:inputText maxlength="20" size="10" value = "#{pessoajuridicaBean.pjuridica.nomefantasia}"
+					readonly="#{pessoajuridicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Data da Criação" />
+					<p:inputMask mask = "99/99/9999" maxlength="20" size="10" value ="#{pessoajuridicaBean.pjuridica.datacriacao}"
+					readonly="#{pessoajuridicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputMask>
+					<p:outputLabel value = "Logradouro"/>
+					<p:inputText maxlength="100" size="10" value = "#{pessoajuridicaBean.pjuridica.logradouro}"
+					readonly="#{pessoajuridicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Numero"/>
+					<p:inputText maxlength="3" size="10" value = "#{pessoajuridicaBean.pjuridica.numero}"
+					readonly="#{pessoajuridicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "CEP"/>
+					<p:inputMask mask = "99999-999" maxlength="9" size="10" value = "#{pessoajuridicaBean.pjuridica.cep}"
+					readonly="#{pessoajuridicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputMask>
+					<p:outputLabel value = "UF"/>
+					<p:inputText maxlength="2" size="10" value = "#{pessoajuridicaBean.pjuridica.uf}"
+					readonly="#{pessoajuridicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Complemento"/>
+					<p:inputText size="10" value = "#{pessoajuridicaBean.pjuridica.complemto}"
+					readonly="#{pessoajuridicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Bairro"/>
+					<p:inputText maxlength="100" size="10" value = "#{pessoajuridicaBean.pjuridica.bairro}"
+					readonly="#{pessoajuridicaBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>	
+			</h:panelGrid>			
+			<h:panelGrid columns="7">
+					<p:commandButton value = "Limpar" actionListener="#{pessoajuridicaBean.novo}"
+					update=":form_pjuridica_cad:pn_func"
+					rendered="#{pessoajuridicaBean.acao == 'Novo'}"/>
+					<p:commandButton value = "Salvar" actionListener = "#{pessoajuridicaBean.SalvarBean}" 
+					update=":msgGlobal :form_pjuridica_cad:pn_func"
+					rendered="#{pessoajuridicaBean.acao == 'Novo'}"/>
+					<p:button value = "Voltar" outcome = "/pages/PessoaJuridicaPesquisa.xhtml"/>
+					<p:commandButton value = "Excluir" 
+					actionListener="#{pessoajuridicaBean.ExcluirBean}"
+					update=":msgGlobal"
+					rendered="#{pessoajuridicaBean.acao == 'Excluir'}"/>
+					<p:commandButton value = "Editar" actionListener="#{pessoajuridicaBean.EditarBean}"
+					update=":msgGlobal"
+					rendered="#{pessoajuridicaBean.acao == 'Editar'}"/>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
