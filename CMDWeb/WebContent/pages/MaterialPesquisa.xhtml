@@ -34,12 +34,15 @@
 			 		<p:column headerText="Descrição" filterBy="#{fcursor.descricao}" sortBy="#{fcursor.deescricao}">
 			 		<h:outputText value="#{fcursor.descricao}"/>
 			 		</p:column>
+			 		<p:column headerText="Fabricante" filterBy="#{fcursor.descricao}" sortBy="#{fcursor.deescricao}">
+			 		<h:outputText value="#{fcursor.fabricante.descricao}"/>
+			 		</p:column>
 			 		<p:column headerText="Opções">
 			 			<p:button value="Excluir" outcome="/pages/MaterialCadastro.xhtml">
 			 				<f:param name="fabacao" value="Excluir"/>
-			 				<f:param name="fabcod" value="#{fcursor.codfabricante}"/>
+			 				<f:param name="fabcod" value="#{fcursor.codmaterial}"/>
 			 			</p:button>
-			 			<p:button value="Editar" outcome="/pages/MaterailCadastro.xhtml">
+			 			<p:button value="Editar" outcome="/pages/MaterialCadastro.xhtml">
 			 				<f:param name="fabacao" value="Editar"/>
 			 				<f:param name="fabcod" value="#{fcursor.codmaterial}"/>
 			 			</p:button>
