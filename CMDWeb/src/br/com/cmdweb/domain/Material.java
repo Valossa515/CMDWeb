@@ -76,9 +76,9 @@ public class Material {
 	private Fabricante fabricante;
 
 	@NotNull(message = "O campo Constante por metro é Obrigatorio")
-	@DecimalMin(value = "0.00000", message = "Informe um valor maior ou igual a 0.00000 para o campo Preço")
+	@DecimalMin(value = "0.00", message = "Informe um valor maior ou igual a 0.00000 para o campo Preço")
 	@DecimalMax(value = "1", message = "informe um valor menor que 1 para o campo preço")
-	@Column(name = "constantemetro" , precision = 1, scale = 5, nullable = false)
+	@Column(name = "constantemetro" , precision = 5, scale = 5, nullable = false)
 	private BigDecimal constantemetro;
 	
 	
