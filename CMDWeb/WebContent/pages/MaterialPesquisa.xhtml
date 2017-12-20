@@ -20,51 +20,32 @@
 					</f:facet>
 			</p:toolbar>			
 			 <p:dataTable emptyMessage="Nenhum Registro Encontrado!!!"
-			 value="#{}" filteredValue="#{}"
+			 value="#{materialBean.lista_material}" filteredValue="#{materialBean.lista_materiais_filtrados}"
 			 var="fcursor"
 			 rows="10" paginator="true">
 			 <f:facet name="footer">
-			    <p:button value="Novo" outcome="">
+			    <p:button value="Novo" outcome="/pages/MaterialCadastro.xhtml?faces-redirect=true">
 			    	<f:param name="fabacao" value="Novo"/>
 			    </p:button>
 			 </f:facet>
-			 		<p:column headerText="CPF" style = "width: 16%;">
-			 		  <h:outputText value="#{}"/>
+			 		<p:column headerText="Codigo">
+			 		  <h:outputText value="#{fcursor.codmaterial}"/>
 			 		</p:column>
-			 		<p:column  headerText="Nome" filterBy="#{}" sortBy="#{}" style = "width: 18%;">
-			 		<h:outputText value="#{}"/>
+			 		<p:column headerText="Descrição" filterBy="#{fcursor.descricao}" sortBy="#{fcursor.deescricao}">
+			 		<h:outputText value="#{fcursor.descricao}"/>
 			 		</p:column>
-			 		<p:column headerText="Data de Nascimento" style = "width: 16%;">
-			 		  <h:outputText value="#{fcursor.datanascimento}"/>
-			 		</p:column>
-			 		<p:column headerText="Logradouro" style = "width: 15%;">
-			 		  <h:outputText value="#{fcursor.logradouro}"/>
-			 		</p:column>
-			 		<p:column headerText="Numero" style = "width: 12%;">
-			 		  <h:outputText value="#{fcursor.numero}"/>
-			 		</p:column>
-			 		<p:column headerText="CEP" style = "width: 15%;">
-			 		  <h:outputText value="#{fcursor.cep}"/>
-			 		</p:column>
-			 		<p:column headerText="UF" style = "width: 5%;">
-			 		  <h:outputText value="#{fcursor.uf}"/>
-			 		</p:column>
-			 		<p:column headerText="Bairro" style = "width: 15%;">
-			 		  <h:outputText value="#{fcursor.bairro}"/>
-			 		</p:column>
-			 		<p:column headerText="Opções" style = "width: 12%;">
-			 			<p:button value="Excluir" outcome="/pages/PessoaFisicaCadastro.xhtml">
+			 		<p:column headerText="Opções">
+			 			<p:button value="Excluir" outcome="/pages/MaterialCadastro.xhtml">
 			 				<f:param name="fabacao" value="Excluir"/>
-			 				<f:param name="fabcod" value="#{fcursor.cpf}"/>
+			 				<f:param name="fabcod" value="#{fcursor.codfabricante}"/>
 			 			</p:button>
-			 			<p:button value="Editar" outcome="/pages/PessoaFisicaCadastro.xhtml">
+			 			<p:button value="Editar" outcome="/pages/MaterailCadastro.xhtml">
 			 				<f:param name="fabacao" value="Editar"/>
-			 				<f:param name="fabcod" value="#{fcursor.cpf}"/>
+			 				<f:param name="fabcod" value="#{fcursor.codmaterial}"/>
 			 			</p:button>
 			 		</p:column>
 			 </p:dataTable>
-		</h:form>
-		
+		</h:form>		
 	</ui:define>
 </ui:composition>
 </html>

@@ -15,6 +15,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -40,6 +42,7 @@ public class Material {
 	@Column(name = "Unidade" , length = 10, nullable = false)
 	private String unidade;
 	
+	@NotNull(message = "O campo Preço é Obrigatorio")
 	@DecimalMin(value = "0.00", message = "Informe um valor maior ou igual a 0.00 para o campo Preço")
 	@DecimalMax(value = "99999.99", message = "informe um valor menor que 99999.99 para o campo preço")
 	@Column(name = "preço" , precision = 8, scale = 2, nullable = false)
@@ -52,7 +55,8 @@ public class Material {
 	private String opcional;
 	
 	@NotNull(message = "O campo Quantidade é Obrigatorio")
-	@Size(min = 1, message = "Tamanho inválido para o campo Quantidade(min 1)")
+	@Min(value = 0, message = "informe um valor maior ou igual a zero para o campo Quantidade")
+	@Max(value = 9999, message = "informeum valor menor que dez mil para o campo Quantidade")
 	@Column(name = "quantidade", nullable = false)
 	private Long quantidade;
 	
@@ -62,7 +66,8 @@ public class Material {
 	private String tipo;
 	
 	@NotNull(message = "O campo Quantidade minima é Obrigatorio")
-	@Size(min = 10, max = 100, message = "Tamanho inválido para o campo Quantidade minima(7 - 100)")
+	@Min(value = 0, message = "informe um valor maior ou igual a zero para o campo Quantidade")
+	@Max(value = 9999, message = "informeum valor menor que dez mil para o campo Quantidade")
 	@Column(name = "quantidademinima")
 	private Integer qtd_min;
 	
@@ -70,8 +75,12 @@ public class Material {
 	@JoinColumn(name = "codfabricante", referencedColumnName = "codfabricante", nullable = false)
 	private Fabricante fabricante;
 
+	@NotNull(message = "O campo Constante por metro é Obrigatorio")
+	@DecimalMin(value = "0.00000", message = "Informe um valor maior ou igual a 0.00000 para o campo Preço")
+	@DecimalMax(value = "1", message = "informe um valor menor que 1 para o campo preço")
 	@Column(name = "constantemetro" , precision = 1, scale = 5, nullable = false)
 	private BigDecimal constantemetro;
+	
 	
 	public BigDecimal getConstantemetro() {
 		return constantemetro;

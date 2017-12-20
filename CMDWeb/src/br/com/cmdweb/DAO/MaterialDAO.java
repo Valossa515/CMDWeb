@@ -53,7 +53,6 @@ public class MaterialDAO {
 			sessão.close();
 		}
 		return material;
-
 	}
 	public Material BuscarporCodigo(Long codigo) 
 	{
