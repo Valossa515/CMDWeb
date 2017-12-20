@@ -71,6 +71,7 @@ public class Material {
 	@Column(name = "quantidademinima")
 	private Integer qtd_min;
 	
+	@NotNull(message = "O campo Fabricante minima é Obrigatorio")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "codfabricante", referencedColumnName = "codfabricante", nullable = false)
 	private Fabricante fabricante;

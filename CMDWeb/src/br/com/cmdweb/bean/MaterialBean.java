@@ -22,6 +22,7 @@ public class MaterialBean {
 	private Long codigo;
 	private List<Fabricante> lista_fabricante;
 	
+	
 	public List<Fabricante> getLista_fabricante() {
 		return lista_fabricante;
 	}
