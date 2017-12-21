@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	  
+	  <ui:composition template="/Templates/Modelo_geral.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="fabcod" value="#{materialBean.codigo}"></f:viewParam>
+			<f:viewParam name="fabacao" value="#{materialBean.acao}"></f:viewParam>
+			<f:event listener="#{materialBean.carregarCadastro}" type="preRenderView"/>
+		</f:metadata>
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:outputText value="Cadastro" />
+		<h:form id="form_mat_cad">
+				<p:toolbar>
+					<f:facet name="left">
+						<h:outputText value="Materiais"/>
+					</f:facet>
+			</p:toolbar>
+			<h:panelGrid columns="4" id="pn_mat">
+					<p:outputLabel value = "Código"/>
+					<p:inputText size="10" readonly="true" value = "#{materialBean.material.codmaterial}"/>
+					<p:outputLabel value = "Descrição"/>
+					<p:inputText maxlength="20" size="10" value = "#{materialBean.material.descricao}"
+					readonly="#{materialBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Unidade"/>
+					<p:inputText maxlength="20" size="10" value = "#{materialBean.material.unidade}"
+					readonly="#{materialBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Preço"/>
+					<p:inputText maxlength="20" size="10" value = "#{materialBean.material.preco}"
+					readonly="#{materialBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Opcional"/>
+					<p:inputText maxlength="20" size="10" value = "#{materialBean.material.opcional}"
+					readonly="#{materialBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Quantidade"/>
+					<p:inputText maxlength="20" size="10" value = "#{materialBean.material.quantidade}"
+					readonly="#{materialBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Tipo"/>
+					<p:inputText maxlength="20" size="10" value = "#{materialBean.material.tipo}"
+					readonly="#{materialBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Quantidade minima"/>
+					<p:inputText maxlength="20" size="10" value = "#{materialBean.material.qtd_min}"
+					readonly="#{materialBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>
+					<p:outputLabel value = "Constante por metro"/>
+					<p:inputText maxlength="20" size="10" value = "#{materialBean.material.constantemetro}"
+					readonly="#{materialBean.acao == 'Excluir'}">
+					<f:validateBean />
+					</p:inputText>	
+					<p:outputLabel value = "Fabricante"/>
+					<p:selectOneMenu value = "#{materialBean.material.fabricante}"
+					converter="fabricanteConverter">
+						<f:selectItem itemValue="" itemLabel="Selecione um Fabricante"/>
+						<f:selectItems value = "#{materialBean.lista_fabricante}"
+						itemValue="#{fabricante}" itemLabel="#{fabricante.descricao}" var = "fabricante"/>
+					<f:validateBean />
+					</p:selectOneMenu>									
+			</h:panelGrid>			
+			<h:panelGrid columns="2">
+					<p:commandButton value = "Limpar" actionListener="#{materialBean.novo}"
+					update=":form_mat_cad:pn_mat"
+					rendered="#{materialBean.acao == 'Excluir'}"/>
+					<p:commandButton value = "Salvar" actionListener = "#{materialBean.SalvarBean}" 
+					update=":msgGlobal :form_mat_cad:pn_mat"
+					rendered="#{materialBean.acao == 'Novo'}"/>
+					<p:button value = "Voltar" outcome = "/pages/MaterialPesquisa.xhtml"/>
+					<p:commandButton value = "Excluir" 
+					actionListener="#{materialBean.ExcluirBean}"
+					update=":msgGlobal"
+					rendered="#{materialBean.acao == 'Excluir'}"/>
+					<p:commandButton value = "Editar" actionListener="#{fabricanteBean.EditarBean}"
+					update=":msgGlobal"
+					rendered="#{materialBean.acao == 'Editar'}"/>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>
