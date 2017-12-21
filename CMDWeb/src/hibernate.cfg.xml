@@ -30,13 +30,15 @@
         <property name="show_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">validade</property>
+        <property name="hbm2ddl.auto">create</property>
 
         <mapping class="br.com.cmdweb.domain.Funcionario"/>
         <mapping class="br.com.cmdweb.domain.PessoaFisica"/>
         <mapping class="br.com.cmdweb.domain.PessoaJuridica"/>
         <mapping class="br.com.cmdweb.domain.Fabricante"/>
         <mapping class="br.com.cmdweb.domain.Material"/>
+        <mapping class="br.com.cmdweb.domain.Venda"/>
+        <mapping class="br.com.cmdweb.domain.Item"/>
 
     </session-factory>
 

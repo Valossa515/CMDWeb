@@ -5,13 +5,12 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import br.com.cmdweb.domain.Material;
+import br.com.cmdweb.domain.Venda;
 import br.com.cmdweb.util.HibernateUtil;
 
-public class MaterialDAO {
+public class VendaDAO {
 	
-	public void Salvar(Material material) 
+	public void Salvar(Venda venda) 
 	{
 		Session sessão = HibernateUtil.getSessionFactory().openSession();
 		Transaction trans = null;
@@ -19,7 +18,7 @@ public class MaterialDAO {
 		try 
 		{
 			trans = sessão.beginTransaction();
-			sessão.save(material);
+			sessão.save(venda);
 			trans.commit();
 		}
 		catch (RuntimeException e) 
@@ -36,14 +35,14 @@ public class MaterialDAO {
 		}
 	}
 	@SuppressWarnings("unchecked")
-	public List<Material> Listar()
+	public List<Venda> Listar()
 	{
 		Session sessão = HibernateUtil.getSessionFactory().openSession();
-		List<Material> material = null;
+		List<Venda> venda = null;
 		try 
 		{
-			Query consulta = sessão.getNamedQuery("Material.listar");
-			material = consulta.list();
+			Query consulta = sessão.getNamedQuery("Venda.listar");
+			venda = consulta.list();
 		} 
 		catch (RuntimeException e) 
 		{
@@ -53,18 +52,18 @@ public class MaterialDAO {
 		{
 			sessão.close();
 		}
-		return material;
+		return venda;
 	}
-	public Material BuscarporCodigo(Long codigo) 
+	public Venda BuscarporCodigo(Long codigo) 
 	{
 		Session sessão = HibernateUtil.getSessionFactory().openSession();
-		Material material = null;
+		Venda venda = null;
 
 		try 
 		{
-			Query consulta = sessão.getNamedQuery("Material.buscar");
+			Query consulta = sessão.getNamedQuery("Venda.buscar");
 			consulta.setLong("codigo", codigo);
-			material = (Material) consulta.uniqueResult();
+			venda = (Venda) consulta.uniqueResult();
 		} 
 		catch (RuntimeException e) 
 		{
@@ -74,9 +73,9 @@ public class MaterialDAO {
 		{
 			sessão.close();
 		}
-		return material;
+		return venda;
 	}
-	public void Excluir(Material material) 
+	public void Excluir(Venda venda) 
 	{
 		Session sessão = HibernateUtil.getSessionFactory().openSession();
 		Transaction trans = null;
@@ -84,7 +83,7 @@ public class MaterialDAO {
 		try 
 		{
 			trans = sessão.beginTransaction();
-			sessão.delete(material);
+			sessão.delete(venda);
 			trans.commit();
 		} 
 		catch (RuntimeException e) 
@@ -100,7 +99,7 @@ public class MaterialDAO {
 			sessão.close();
 		}
 	}
-	public void Editar(Material material) 
+	public void Editar(Venda venda) 
 	{
 		Session sessão = HibernateUtil.getSessionFactory().openSession();
 
@@ -109,7 +108,7 @@ public class MaterialDAO {
 		try 
 		{
 			trans = sessão.beginTransaction();
-			sessão.update(material);
+			sessão.update(venda);
 			trans.commit();
 		} 
 		catch (RuntimeException e) 
