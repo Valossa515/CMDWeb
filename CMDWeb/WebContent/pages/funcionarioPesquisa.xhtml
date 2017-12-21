@@ -35,6 +35,9 @@
 			 		<p:column headerText="Nome" filterBy="#{fcursor.login}" sortBy="#{fcursor.login}">
 			 		<h:outputText value="#{fcursor.login}"/>
 			 		</p:column>
+			 		<p:column headerText="Função">
+			 		  <h:outputText value="#{fcursor.funcao}"/>
+			 		</p:column>
 			 		<p:column headerText="Opções">
 			 			<p:button value="Excluir" outcome="/pages/FuncionarioCadastro.xhtml">
 			 				<f:param name="fabacao" value="Excluir"/>

@@ -35,7 +35,6 @@ public class Funcionario
 	private String senha;
 	
 	@NotNull(message = "O campo Função é obrigatorio")
-	@Size(min = 7, max = 40, message = "Tamanho inválido para o campo Função(7 - 40)")
 	@Column(name = "funcao", length = 40, nullable = false)
 	private String funcao;
 	

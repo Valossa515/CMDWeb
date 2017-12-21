@@ -32,9 +32,18 @@
 					</p:inputText>
 					<p:outputLabel value = "Senha" />
 					<p:password maxlength="20" size="10" value ="#{funcionarioBean.func.senha}"
-					readonly="#{funcionarioBean.acao == 'Excluir'}">
+					readonly="#{funcionarioBean.acao == 'Excluir'}"
+					redisplay="true">
 					<f:validateBean />
-					</p:password>	
+					</p:password>
+					<p:outputLabel value = "Função"/>
+					<p:selectOneMenu value="#{funcionarioBean.func.funcao}">
+						<f:validateBean/>
+						<f:selectItem itemValue="" itemLabel="Selecione um função"/>
+						<f:selectItem itemValue="Administrador" itemLabel="Administrador"/>
+						<f:selectItem itemValue="Balconista" itemLabel="Balconista"/>
+						<f:selectItem itemValue="Gerente" itemLabel="Gerente"/>
+					</p:selectOneMenu>
 			</h:panelGrid>			
 			<h:panelGrid columns="7">
 					<p:commandButton value = "Limpar" actionListener="#{funcionarioBean.novo}"
