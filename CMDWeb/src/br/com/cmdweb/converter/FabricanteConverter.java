@@ -12,11 +12,11 @@ import br.com.cmdweb.domain.Fabricante;
 public class FabricanteConverter implements Converter{
 
 	@Override
-	public Object getAsObject(FacesContext facescontext, UIComponent component, String val) {
+	public Object getAsObject(FacesContext facescontext, UIComponent component, String valor) {
 		
 		try
 		{
-			Long codigo = Long.parseLong(val);
+			Long codigo = Long.parseLong(valor);
 			FabricanteDAO dao = new FabricanteDAO();
 			Fabricante fab = dao.BuscarporCodigo(codigo);
 			return fab;
