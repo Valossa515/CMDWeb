@@ -41,7 +41,8 @@
 					<f:validateBean />
 					</p:inputText>
 					<p:outputLabel value = "Opcional"/>
-					<p:selectOneMenu value="#{materialBean.material.opcional}">
+					<p:selectOneMenu value="#{materialBean.material.opcional}"
+					readonly="#{materialBean.acao == 'Excluir'}">
 						<f:validateBean/>
 						<f:selectItem itemValue="" itemLabel="Selecione"/>
 						<f:selectItem itemValue="Sim" itemLabel="Sim"/>
