@@ -41,10 +41,12 @@
 					<f:validateBean />
 					</p:inputText>
 					<p:outputLabel value = "Opcional"/>
-					<p:inputText maxlength="20" size="10" value = "#{materialBean.material.opcional}"
-					readonly="#{materialBean.acao == 'Excluir'}">
-					<f:validateBean />
-					</p:inputText>
+					<p:selectOneMenu value="#{materialBean.material.opcional}">
+						<f:validateBean/>
+						<f:selectItem itemValue="" itemLabel="Selecione"/>
+						<f:selectItem itemValue="Sim" itemLabel="Sim"/>
+						<f:selectItem itemValue="Não" itemLabel="Não"/>
+					</p:selectOneMenu>
 					<p:outputLabel value = "Quantidade"/>
 					<p:inputText maxlength="20" size="10" value = "#{materialBean.material.quantidade}"
 					readonly="#{materialBean.acao == 'Excluir'}">
