@@ -10,15 +10,15 @@ import br.com.cmdweb.util.HibernateUtil;
 
 public class VendaDAO {
 	
-	public void Salvar(Venda venda) 
+	public Long Salvar(Venda venda) 
 	{
 		Session sessão = HibernateUtil.getSessionFactory().openSession();
 		Transaction trans = null;
-
+		Long cod = null;
 		try 
 		{
 			trans = sessão.beginTransaction();
-			sessão.save(venda);
+			cod = (Long)sessão.save(venda);
 			trans.commit();
 		}
 		catch (RuntimeException e) 
@@ -33,6 +33,7 @@ public class VendaDAO {
 		{
 			sessão.close();
 		}
+		return cod;
 	}
 	@SuppressWarnings("unchecked")
 	public List<Venda> Listar()

@@ -16,11 +16,11 @@
 		</f:metadata>
 	</ui:define>
 	<ui:define name="conteudo">
-		<h:outputText value="Cadastro" />
+		<h:outputText value="Vendas" />
 		<h:form id="form_item_cad">
 			<p:toolbar>
 				<f:facet name="left">
-					<h:outputText value="Fabricantes" />
+					<h:outputText value="Materiais" />
 				</f:facet>
 			</p:toolbar>
 			<p:separator/>
@@ -46,7 +46,7 @@
 			 		
 			 		<p:column headerText="Opções">
 			 			<p:commandButton value = "Adicionar" actionListener="#{vendaBean.adicionar(fcursor)}"
-			 			update=":form_item_cad:tb_itens"/>
+			 			update=":form_item_cad:tb_itens :form_item_cad:valor_total"/>
 			 		</p:column>
 			 </p:dataTable>
 			 
@@ -75,10 +75,40 @@
 			 		<h:outputText value="#{item.valor_parcial}"/>
 			 		</p:column>
 			 		<p:column headerText="Opções">
-			 			<p:commandButton value = "Remover"/>
+			 			<p:commandButton value = "Remover" actionListener = "#{vendaBean.remover(item)}"
+			 			update=":form_item_cad:tb_itens :form_item_cad:valor_total"/>
 			 		</p:column>
 			 </p:dataTable>
+			 <p:separator/>
+			 <h:outputText id = "valor_total" value = "Valor Total: #{vendaBean.venda.valor_total} "/>
+			 <p:separator/>
+			 
+			 <p:commandButton value = "Finalizar Venda"
+			 actionListener="#{vendaBean.carregarvenda}"
+			 oncomplete="PF('dialogo').show();"
+			 update=":form_dados"/>
 		</h:form>
+		<p:dialog appendTo="@(body)" widgetVar="dialogo" draggable="true" resizable="false" modal="true" closable="true" header="Finalização da Venda">
+			<h:form id = "form_dados">
+				<h:panelGrid calouns = "3">
+					<h:outputText value = "Horário:"/>
+					<h:outputText value = "#{vendaBean.venda.horario}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm"
+						timeZone="America/Sao_Paulo"/>
+					</h:outputText>
+					<h:outputText value = "Funcionario:"/>
+					<h:outputText value = "#{vendaBean.venda.funcionario.login}"/>
+					<h:outputText value = "Valor Total:"/>
+					<h:outputText value = "#{vendaBean.venda.valor_total}"/>
+				</h:panelGrid>
+				<h:panelGrid calouns = "2">
+					<p:commandButton value = "Finalizar Venda" actionListener="#{vendaBean.salvar}"
+					update=":msgGlobal :form_item_cad:tb_itens :form_item_cad:valor_total "
+					oncomplete="PF('dialogo').hide();"/>
+					<p:commandButton value = "Voltar" onclick="PF('dialogo').hide();"/>
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
 	</ui:define>
 </ui:composition>
 </html>
