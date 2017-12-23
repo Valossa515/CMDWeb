@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -26,11 +27,13 @@ public class Funcionario
 	private int codfuncionario;
 	
 	@NotNull(message = "O campo Login é Obrigatorio")
+	@NotEmpty(message = "O campo Login é Obrigatorio")
 	@Size(min = 7, max = 40, message = "Tamanho inválido para o campo Login(7 - 40)")
 	@Column(name = "Login", length = 40, nullable = false)
 	private String login;
 	
 	@NotNull(message = "O campo Senha é obrigatorio")
+	@NotEmpty(message = "O campo Senha é Obrigatorio")
 	@Size(min = 7, max = 40, message = "Tamanho inválido para o campo Senha(7 - 40)")
 	@Column(name = "Senha", length = 40, nullable = false)
 	private String senha;
