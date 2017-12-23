@@ -38,18 +38,11 @@ xmlns:ui="http://xmlns.jcp.org/jsf/facelets" >
          				<p:menuitem value = "Materiais" outcome="/pages/MaterialPesquisa.xhtml"/>
          			</p:submenu>
          			<p:submenu label="Vendas">
-         				<p:menuitem value = "Nova Venda"/>
+         				<p:menuitem value = "Nova Venda"  outcome="/pages/VendaCadastro.xhtml"/>
          				<p:menuitem value = "Orçamentos"/>
          			</p:submenu>
          </p:panelMenu>
     </h:form>   
-    </p:layoutUnit>
- 
-    <p:layoutUnit position="east" size="200" resizable="true" closable="true" collapsible="false" effect="drop">
-   			<p:outputLabel for = "button" value ="Calendario">
-   			<p:calendar id="button" showOn="button" />
-   					
-   			</p:outputLabel>
     </p:layoutUnit>
     <p:layoutUnit position="center">
      <ui:insert name = "conteudo"/>

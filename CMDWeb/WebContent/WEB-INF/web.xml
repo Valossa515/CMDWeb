@@ -18,7 +18,7 @@
 	</servlet-mapping>
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
-		<param-value>rocket</param-value>
+		<param-value>redmond</param-value>
 	</context-param>
 	<listener>
 		<listener-class>br.com.cmdweb.util.ContextListener</listener-class>

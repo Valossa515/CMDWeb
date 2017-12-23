@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/Templates/Modelo_geral.xhtml">
+	<ui:define name="metadata">
+		<f:metadata>
+			<f:viewParam name="fabcod" value="#{fabricanteBean.codigo}"></f:viewParam>
+			<f:viewParam name="fabacao" value="#{fabricanteBean.acao}"></f:viewParam>
+			<f:event listener="#{vendaBean.carregarPesquisa}"
+				type="preRenderView" />
+		</f:metadata>
+	</ui:define>
+	<ui:define name="conteudo">
+		<h:outputText value="Cadastro" />
+		<h:form id="form_item_cad">
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Fabricantes" />
+				</f:facet>
+			</p:toolbar>
+			<p:separator/>
+			 <p:dataTable emptyMessage="Nenhum Registro Encontrado!!!"
+			 value="#{vendaBean.lista_material}"
+			 var="fcursor"
+			 rows="5" paginator="true">
+			 		<p:column headerText="Codigo">
+			 		  <h:outputText value="#{fcursor.codmaterial}"/>
+			 		</p:column>
+			 		<p:column headerText="Descrição" filterBy="#{fcursor.descricao}" sortBy="#{fcursor.deescricao}">
+			 		<h:outputText value="#{fcursor.descricao}"/>
+			 		</p:column>
+			 		<p:column headerText="Fabricante" filterBy="#{fcursor.fabricante.descricao}" sortBy="#{fcursor.fabricante.deescricao}">
+			 		<h:outputText value="#{fcursor.fabricante.descricao}"/>
+			 		</p:column>
+			 		<p:column headerText="Preço" sortBy="#{fcursor.preco}">
+			 		<h:outputText value="#{fcursor.preco}"/>
+			 		</p:column>
+			 		<p:column headerText="Quantidade" sortBy="#{fcursor.quantidade}">
+			 		<h:outputText value="#{fcursor.quantidade}"/>
+			 		</p:column>
+			 		
+			 		<p:column headerText="Opções">
+			 			<p:commandButton value = "Adicionar" actionListener="#{vendaBean.adicionar(fcursor)}"
+			 			update=":form_item_cad:tb_itens"/>
+			 		</p:column>
+			 </p:dataTable>
+			 
+			 <p:separator/>
+			 
+			 <p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Carrinho" />
+				</f:facet>
+			</p:toolbar>
+			 <p:dataTable emptyMessage="Nenhum Registro Encontrado!!!"
+			 value="#{vendaBean.lista_itens}"
+			 var="item"
+			 rows="3" paginator="true"
+			 id="tb_itens">
+			 		<p:column headerText="Produto">
+			 		  <h:outputText value="#{item.material.descricao}"/>
+			 		</p:column>
+			 			<p:column headerText="Fabricante">
+			 		  <h:outputText value="#{item.material.fabricante.descricao}"/>
+			 		</p:column>
+			 		<p:column headerText="Quantidade">
+			 		<h:outputText value="#{item.quantidade}"/>
+			 		</p:column>
+			 		<p:column headerText="Preço Parcial">
+			 		<h:outputText value="#{item.valor_parcial}"/>
+			 		</p:column>
+			 		<p:column headerText="Opções">
+			 			<p:commandButton value = "Remover"/>
+			 		</p:column>
+			 </p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
