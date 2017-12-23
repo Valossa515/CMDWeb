@@ -148,4 +148,27 @@ public class FuncionarioDAO
 			sessão.close();
 		}
 	}
+	public Funcionario Logar(String login, String senha)
+	{
+		Funcionario func = null;
+		Session sessão = HibernateUtil.getSessionFactory().openSession();
+		try
+		{
+			Query consulta = sessão.getNamedQuery("Funcionario.logar");
+			consulta.setString("login",login);
+			consulta.setString("senha",senha);
+			func = (Funcionario) consulta.uniqueResult();
+		}
+		catch(RuntimeException e)
+		{
+
+			throw e;
+		}
+		finally
+		{
+			sessão.close();
+		}
+		
+		return func;
+	}
 }

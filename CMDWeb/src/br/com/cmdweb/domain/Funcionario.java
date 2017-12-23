@@ -15,7 +15,8 @@ import javax.validation.constraints.Size;
 @Table(name = "funcionarios")
 @NamedQueries({
 	@NamedQuery(name = "Funcionario.listar", query = "SELECT funcionario FROM Funcionario funcionario"),
-	@NamedQuery(name = "Funcionario.buscar", query = "SELECT funcionario FROM Funcionario funcionario WHERE funcionario.codfuncionario = :codigo")
+	@NamedQuery(name = "Funcionario.buscar", query = "SELECT funcionario FROM Funcionario funcionario WHERE funcionario.codfuncionario = :codigo"),
+	@NamedQuery(name = "Funcionario.logar", query = "SELECT funcionario FROM Funcionario funcionario WHERE funcionario.login = :login AND funcionario.senha = :senha")
 })
 public class Funcionario 
 {
