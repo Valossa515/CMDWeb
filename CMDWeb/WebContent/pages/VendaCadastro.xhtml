@@ -86,11 +86,11 @@
 			 <p:commandButton value = "Finalizar Venda"
 			 actionListener="#{vendaBean.carregarvenda}"
 			 oncomplete="PF('dialogo').show();"
-			 update=":form_dados"/>
+			 update=":form_dados:pn_venda"/>
 		</h:form>
 		<p:dialog appendTo="@(body)" widgetVar="dialogo" draggable="true" resizable="false" modal="true" closable="true" header="Finalização da Venda">
 			<h:form id = "form_dados">
-				<h:panelGrid calouns = "3">
+				<h:panelGrid id = "pn_venda" calouns = "3">
 					<h:outputText value = "Horário:"/>
 					<h:outputText value = "#{vendaBean.venda.horario}">
 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm"

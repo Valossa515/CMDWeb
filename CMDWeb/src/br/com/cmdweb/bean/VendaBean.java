@@ -1,11 +1,13 @@
 package br.com.cmdweb.bean;
 
 import java.math.BigDecimal;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import br.com.cmdweb.DAO.FuncionarioDAO;
@@ -28,6 +30,18 @@ public class VendaBean
 	private List<Item> lista_itens;
 	private Venda venda;
 	
+	@ManagedProperty(value = "#{autenticacaoBean}")
+	private AutenticacaoBean auth;
+	
+	
+	public AutenticacaoBean getAuth() {
+		return auth;
+	}
+
+	public void setAuth(AutenticacaoBean auth) {
+		this.auth = auth;
+	}
+
 	public Venda getVenda() 
 	{
 		if(venda == null)
@@ -136,7 +150,7 @@ public class VendaBean
 	{
 		venda.setHorario(new Date());
 		FuncionarioDAO dao = new FuncionarioDAO();
-		Funcionario f = dao.BuscarporCodigo(1);
+		Funcionario f = dao.BuscarporCodigo(auth.getFunc().getCodfuncionario());
 		venda.setFuncionario(f);
 	}
 	public void salvar()

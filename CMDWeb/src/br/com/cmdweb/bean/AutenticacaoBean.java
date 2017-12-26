@@ -2,7 +2,6 @@ package br.com.cmdweb.bean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import br.com.cmdweb.DAO.FuncionarioDAO;
 import br.com.cmdweb.domain.Funcionario;
 import br.com.cmdweb.util.FacesUtil;
