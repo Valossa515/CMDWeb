@@ -26,7 +26,7 @@
 					<p:outputLabel value = "Código"/>
 					<p:inputText size="10" readonly="true" value = "#{fabricanteBean.fabricante.codfabricante}"/>
 					<p:outputLabel value = "Descrição"/>
-					<p:inputText maxlength="20" size="10" value = "#{fabricanteBean.fabricante.descricao}"
+					<p:inputText maxlength="20" size="20" value = "#{fabricanteBean.fabricante.descricao}"
 					readonly="#{fabricanteBean.acao == 'Excluir'}">
 					<f:validateBean />
 					</p:inputText>

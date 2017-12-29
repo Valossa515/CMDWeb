@@ -56,7 +56,7 @@ public class Material {
 	
 	@NotNull(message = "O campo Quantidade é Obrigatorio")
 	@Min(value = 0, message = "informe um valor maior ou igual a zero para o campo Quantidade")
-	@Max(value = 9999, message = "informeum valor menor que dez mil para o campo Quantidade")
+	@Max(value = 9999, message = "informe um valor menor que dez mil para o campo Quantidade")
 	@Column(name = "quantidade", nullable = false)
 	private Long quantidade;
 	
