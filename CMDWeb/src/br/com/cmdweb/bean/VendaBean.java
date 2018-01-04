@@ -18,6 +18,7 @@ import br.com.cmdweb.domain.Funcionario;
 import br.com.cmdweb.domain.Item;
 import br.com.cmdweb.domain.Material;
 import br.com.cmdweb.domain.Venda;
+import br.com.cmdweb.filter.VendaFilter;
 import br.com.cmdweb.util.FacesUtil;
 
 @ManagedBean
@@ -28,12 +29,34 @@ public class VendaBean
 	private List<Material> Lista_material;
 	private List<Material> lista_materiais_filtrados;
 	private List<Item> lista_itens;
+	private List<Venda> listar_venda_filtradas;
 	private Venda venda;
-	
+	private VendaFilter filter;
 	@ManagedProperty(value = "#{autenticacaoBean}")
 	private AutenticacaoBean auth;
+	public VendaFilter getFilter() {
+		if(filter == null)
+		{
+			filter = new VendaFilter();
+		}
+		return filter;
+	}
 	
 	
+	public List<Venda> getListar_venda_filtradas() {
+		return listar_venda_filtradas;
+	}
+
+
+	public void setListar_venda_filtradas(List<Venda> listar_venda_filtradas) {
+		this.listar_venda_filtradas = listar_venda_filtradas;
+	}
+
+
+	public void setFilter(VendaFilter filter) {
+		this.filter = filter;
+	}
+
 	public AutenticacaoBean getAuth() {
 		return auth;
 	}
@@ -175,6 +198,18 @@ public class VendaBean
 		catch (RuntimeException e) 
 		{
 			FacesUtil.MsgErro("Erro ao realizar Venda: " + e.getMessage() + "Codigo já cadastrado");
+		}
+	}
+	public void filtrar()
+	{
+		try 
+		{
+			VendaDAO dao =  new VendaDAO();
+			listar_venda_filtradas = dao.FiltrarVenda(filter);
+		}
+		catch (RuntimeException e) 
+		{
+			FacesUtil.MsgErro("Erro ao listar Venda: " + e.getMessage() + "Intervalo de datas não encontrado!!!");
 		}
 	}
 }

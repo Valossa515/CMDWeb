@@ -1,11 +1,11 @@
 package br.com.cmdweb.DAO;
 
 import java.util.List;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import br.com.cmdweb.domain.Venda;
+import br.com.cmdweb.filter.VendaFilter;
 import br.com.cmdweb.util.HibernateUtil;
 
 public class VendaDAO {
@@ -124,5 +124,41 @@ public class VendaDAO {
 		{
 			sessão.close();
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Venda> FiltrarVenda(VendaFilter filter)
+	{
+		List<Venda> venda = null;
+		
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT venda FROM Venda venda ");
+		
+		if(filter.getData_inicial() != null && filter.getData_final() != null)
+		{
+			sql.append("WHERE venda.horario BETWEEN :data_inicial AND :data_final ");
+		}
+		sql.append("ORDER BY venda.horario ");
+		
+		Session sessão = HibernateUtil.getSessionFactory().openSession();
+		try 
+		{
+			Query consulta = sessão.createQuery(sql.toString());
+			if(filter.getData_inicial() != null && filter.getData_final() != null)
+			{
+				consulta.setDate("data_inicial", filter.getData_inicial());
+				consulta.setDate("data_final", filter.getData_final());
+			}			
+			venda = consulta.list();
+		} 
+		catch (RuntimeException e) 
+		{
+			throw e;
+		} 
+		finally 
+		{
+			sessão.close();
+		}
+		return venda;
 	}
 }

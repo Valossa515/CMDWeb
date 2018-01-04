@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/Templates/Modelo_geral.xhtml">
+	<ui:define name="conteudo">
+			<h:form id = "form_pesquisa">
+				<p:toolbar>
+					<f:facet name="left">
+						<h:outputText value="Pesquisa de Vendas"/>
+					</f:facet>
+			</p:toolbar>
+			<p:separator/>
+			<h:panelGrid columns = "5">
+				<p:outputLabel value = "Data Inicial"/>
+				<p:calendar value = "#{vendaBean.filter.data_inicial}"/>
+				
+				<p:outputLabel value = "Data Final"/>
+				<p:calendar value="#{vendaBean.filter.data_final}"/>
+				
+				<p:commandButton value = "Buscar" actionListener="#{vendaBean.filtrar}"
+				update=":msgGlobal :form_pesquisa:tb_vendas"/>
+			</h:panelGrid>
+			
+			<p:dataTable id = "tb_vendas" emptyMessage="Nenhum Registro Encontrado!!!"
+			 value="#{vendaBean.listar_venda_filtradas}" 
+			 var="fcursor"
+			 rows="10" paginator="true">
+
+			 		<p:column headerText="Codigo">
+			 		  <h:outputText value="#{fcursor.codvenda}"/>
+			 		</p:column>
+			 		
+			 		<p:column headerText="Horario">
+			 		<h:outputText value="#{fcursor.horario}">
+			 		 <f:convertDateTime pattern="dd/MM/yyyy HH:mm"
+						timeZone="America/Sao_Paulo"/>
+			 		</h:outputText>
+			 		</p:column>
+			 		
+			 		<p:column headerText="Valor Total">
+			 		<h:outputText value="#{fcursor.valor_total}">
+			 		 <f:convertNumber pattern="0.00"/>
+			 		</h:outputText>
+			 		</p:column>
+			 		
+			 		<p:column headerText="Funcionario">
+			 		<h:outputText value="#{fcursor.funcionario.login}"/>
+			 		</p:column>
+			 		
+			 </p:dataTable>		
+			</h:form>
+	</ui:define>
+</ui:composition>
+</html>
