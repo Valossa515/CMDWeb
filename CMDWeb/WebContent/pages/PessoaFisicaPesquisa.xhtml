@@ -29,7 +29,7 @@
 			    	<f:param name="fabacao" value="Novo"/>
 			    </p:button>
 			 </f:facet>
-			 		<p:column headerText="CPF" style = "width: 16%;">
+			 		<p:column headerText="CPF" style = "width: 16%;" filterBy="#{fcursor.cpf}"  sortBy="#{fcursor.cpf}">
 			 		  <h:outputText value="#{fcursor.cpf}"/>
 			 		</p:column>
 			 		<p:column  headerText="Nome" filterBy="#{fcursor.nome}" sortBy="#{fcursor.nome}" style = "width: 18%;">
