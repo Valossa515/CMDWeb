@@ -18,6 +18,16 @@ public class FacesUtil {
 		flash.setKeepMessages(true);
 		context.addMessage(null, fmessage);
 	}
+	public static void MsgManutencao(String mensagem)
+	{
+		FacesMessage fmessage = new FacesMessage(FacesMessage.SEVERITY_INFO, mensagem, mensagem);
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext externa = context.getExternalContext();
+		Flash flash = externa.getFlash();
+		flash.setKeepMessages(true);
+		context.addMessage(null, fmessage);
+	}
+	
 	public static void MsgErro(String mensagem) 
 	{
 		FacesMessage fmessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, mensagem, mensagem);
