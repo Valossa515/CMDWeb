@@ -23,13 +23,13 @@
 			</p:toolbar>
 			<h:panelGrid columns="4" id="pn_func">
 					<p:outputLabel value = "CPF"/>
-					<p:inputMask mask="999.999.999-99" size="20" 
+					<p:inputMask mask="999.999.999-99" size="15" 
 					   value = "#{pessoafisicaBean.pfisica.cpf}"
 					   readonly="#{pessoafisicaBean.acao == 'Excluir'}">
 						<f:validateBean/>
 					</p:inputMask>
 					<p:outputLabel value = "Nome"/>
-					<p:inputText maxlength="20" size="10" value = "#{pessoafisicaBean.pfisica.nome}"
+					<p:inputText maxlength="20" size="20" value = "#{pessoafisicaBean.pfisica.nome}"
 					readonly="#{pessoafisicaBean.acao == 'Excluir'}">
 					<f:validateBean />
 					</p:inputText>
@@ -39,7 +39,7 @@
 					<f:validateBean />
 					</p:inputMask>
 					<p:outputLabel value = "Logradouro"/>
-					<p:inputText maxlength="100" size="10" value = "#{pessoafisicaBean.pfisica.logradouro}"
+					<p:inputText maxlength="100" size="20" value = "#{pessoafisicaBean.pfisica.logradouro}"
 					readonly="#{pessoafisicaBean.acao == 'Excluir'}">
 					<f:validateBean />
 					</p:inputText>
@@ -59,12 +59,12 @@
 					<f:validateBean />
 					</p:inputText>
 					<p:outputLabel value = "Complemento"/>
-					<p:inputText size="10" value = "#{pessoafisicaBean.pfisica.complemto}"
+					<p:inputText size="20" value = "#{pessoafisicaBean.pfisica.complemto}"
 					readonly="#{pessoafisicaBean.acao == 'Excluir'}">
 					<f:validateBean />
 					</p:inputText>
 					<p:outputLabel value = "Bairro"/>
-					<p:inputText maxlength="100" size="10" value = "#{pessoafisicaBean.pfisica.bairro}"
+					<p:inputText maxlength="100" size="20" value = "#{pessoafisicaBean.pfisica.bairro}"
 					readonly="#{pessoafisicaBean.acao == 'Excluir'}">
 					<f:validateBean />
 					</p:inputText>	

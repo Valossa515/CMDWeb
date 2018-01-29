@@ -1,8 +1,6 @@
 package br.com.cmdweb.bean;
 
 import java.util.List;
-
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import br.com.cmdweb.DAO.PessoaFisicaDAO;
@@ -70,7 +68,10 @@ public class PessoafisicaBean {
 	}
 	public void novo()
 	{
-		pfisica = new PessoaFisica();
+		if(pfisica != null)
+		{
+			pfisica = new PessoaFisica();
+		}
 	}
 	
 	public void carregarPesquisa()
@@ -134,6 +135,4 @@ public class PessoafisicaBean {
 			FacesUtil.MsgErro("Erro ao editar Cliente: " + e.getMessage());
 		}
 	}
-	
-	
 }

@@ -22,16 +22,16 @@
 						<h:outputText value="Funcionários"/>
 					</f:facet>
 			</p:toolbar>
-			<h:panelGrid columns="6" id="pn_func">
+			<h:panelGrid columns="8" id="pn_func">
 					<p:outputLabel value = "Código"/>
 					<p:inputText size="10" readonly="true" value = "#{funcionarioBean.func.codfuncionario}"/>
 					<p:outputLabel value = "Nome"/>
-					<p:inputText maxlength="20" size="10" value = "#{funcionarioBean.func.login}"
+					<p:inputText maxlength="20" size="20" value = "#{funcionarioBean.func.login}"
 					readonly="#{funcionarioBean.acao == 'Excluir'}">
 					<f:validateBean />
 					</p:inputText>
 					<p:outputLabel value = "Senha" />
-					<p:password maxlength="20" size="10" value ="#{funcionarioBean.func.senha}"
+					<p:password maxlength="20" size="20" value ="#{funcionarioBean.func.senha}"
 					readonly="#{funcionarioBean.acao == 'Excluir'}"
 					redisplay="true">
 					<f:validateBean />
